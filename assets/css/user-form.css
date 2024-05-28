@@ -58,3 +58,8 @@ input[type="submit"]:hover {
     margin-bottom: 10px;
     font-size: 14px;
 }
+
+.login-link {
+    color: blue;
+    text-decoration: none;
+}
