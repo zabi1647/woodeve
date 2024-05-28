@@ -8,7 +8,6 @@ $(document).ready(function() {
         var username = $("#username").val();
         var password = $("#password").val();
       
-
         var errors = [];
 
         // Clear previous error messages
@@ -16,22 +15,19 @@ $(document).ready(function() {
 
         // Validate username
         if (username.length < 5) {
-            errors.push("Please enter username.");
-            displayError("username", "Please enter username.");
+            errors.push("Please enter a username of at least 5 characters.");
+            displayError("username", "Please enter a username of at least 5 characters.");
         }
-
-        
 
         // Validate password
         if (password.length < 1) {
-            errors.push("Please enter password");
-            displayError("password", "Please enter password");
+            errors.push("Please enter a password.");
+            displayError("password", "Please enter a password.");
         }
-
 
         // Display errors or submit the form
         if (errors.length > 0) {
-            // alert(errors.join("\n"));
+            // Display errors
         } else {
             var data = {
                 username: username,
@@ -48,23 +44,24 @@ $(document).ready(function() {
             })
             .then(response => {
                 if (response.ok) { // Check if the response status is 200-299
-                    // return response.json();
+                    return response.json();
                 } else {
                     throw new Error('Login failed: ' + response.statusText);
                 }
             })
             .then(data => {
+                // Save the received data to localStorage
+                localStorage.setItem('userData', JSON.stringify(data));
                 
+                alert('Login successful!');
                 setTimeout(() => {
-                    alert('Login  successful!');
-                   
-                }, 4000); 
-                window.location.href = 'index.html';  // Redirect to the login page
+                    window.location.href = 'index.html';  // Redirect to the home page after 2 seconds
+                }, 2000); // 2000 milliseconds = 2 seconds
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Login  failed: ' + error.message);
-            }); // Unbind the event and submit the form if no errors
+                alert('Login failed: ' + error.message);
+            });
         }
     });
 
