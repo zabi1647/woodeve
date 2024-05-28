@@ -16,8 +16,8 @@ $(document).ready(function() {
 
         // Validate username
         if (username.length < 5) {
-            errors.push("Username must be at least 5 characters long.");
-            displayError("username", "Username must be at least 5 characters long.");
+            errors.push("Please enter username.");
+            displayError("username", "Please enter username.");
         }
 
         
@@ -33,7 +33,38 @@ $(document).ready(function() {
         if (errors.length > 0) {
             // alert(errors.join("\n"));
         } else {
-            form.off('submit').submit(); // Unbind the event and submit the form if no errors
+            var data = {
+                username: username,
+                password: password
+            };
+
+            // Make the API call
+            fetch('http://localhost:5000/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) { // Check if the response status is 200-299
+                    // return response.json();
+                } else {
+                    throw new Error('Login failed: ' + response.statusText);
+                }
+            })
+            .then(data => {
+                
+                setTimeout(() => {
+                    alert('Login  successful!');
+                   
+                }, 4000); 
+                window.location.href = 'index.html';  // Redirect to the login page
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Login  failed: ' + error.message);
+            }); // Unbind the event and submit the form if no errors
         }
     });
 

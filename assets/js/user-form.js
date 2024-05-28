@@ -17,7 +17,7 @@ $(document).ready(function() {
         $(".error-message").remove();
 
         // Validate username
-        if (username.length < 5) {
+        if (username.length < 5) { // Changed this to 5 characters as per your error message
             errors.push("Username must be at least 5 characters long.");
             displayError("username", "Username must be at least 5 characters long.");
         }
@@ -29,9 +29,9 @@ $(document).ready(function() {
         }
 
         // Validate password
-        if (password.length !== 8) {
-            errors.push("Password must be exactly 8 characters long.");
-            displayError("password", "Password must be exactly 8 characters long.");
+        if (password.length < 8) {
+            errors.push("Password must be at least 8 characters long."); // Updated the error message to be consistent
+            displayError("password", "Password must be at least 8 characters long.");
         }
 
         // Validate confirm password
@@ -42,9 +42,42 @@ $(document).ready(function() {
 
         // Display errors or submit the form
         if (errors.length > 0) {
-            // alert(errors.join("\n"));
+            // Do not submit the form if there are validation errors
         } else {
-            form.off('submit').submit(); // Unbind the event and submit the form if no errors
+            // Prepare the data to be sent
+            var data = {
+                username: username,
+                email: email,
+                password: password
+            };
+
+            // Make the API call
+            fetch('http://localhost:5000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) { // Check if the response status is 200-299
+                    return response.json();
+                } else {
+                    throw new Error('Registration failed: ' + response.statusText);
+                }
+            })
+            .then(data => {
+                
+                setTimeout(() => {
+                    alert('Registration successful!');
+                   
+                }, 4000); 
+                window.location.href = 'signin.html';  // Redirect to the login page
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Registration failed: ' + error.message);
+            });
         }
     });
 

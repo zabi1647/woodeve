@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const userRoute = require('./routes/user');
 const authRoute = require('./routes/auth');
 const productRoute = require('./routes/product');
@@ -12,6 +13,8 @@ mongoose.connect(process.env.MONGO_URL).then(()=>console.log('Connected to Mongo
 app.get('/api/v1', (req, res) => {
     
 })
+
+app.use(cors());
 
 app.use(express.json());    
 
