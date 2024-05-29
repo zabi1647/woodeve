@@ -71,15 +71,28 @@
           <span class="btn-badge fav-add">0</span>
         </button>
 
-        <button class="header-action-btn" aria-label="cart">
+        <button class="header-action-btn" aria-label="cart" id="cartButton">
           <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-
           <span class="btn-badge cart-add">0</span>
         </button>
-
+        
         <button class="header-action-btn" aria-label="open menu" data-nav-toggler>
           <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
         </button>
+        
+        <div id="cartSidebar" class="cart-sidebar">
+          <button id="closeSidebarButton" class="close-sidebar-btn" aria-label="close sidebar">
+            &times;
+          </button>
+          <h2>My Cart</h2>
+          <ul id="cartItems"></ul>
+          <button id="checkoutButton">Check Out</button>
+        </div>
+        
+        <div id="overlay" class="overlay"></div>
+        
+        
+        
 
       </div>
 
@@ -174,7 +187,7 @@
 
       <li class="contact-item">
         <address class="address">
-          4 Street, Hostel City , Islamabad, Pakistan
+          Street 4th, Hostel City , Islamabad, Pakistan
         </address>
       </li>
 

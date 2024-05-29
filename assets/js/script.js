@@ -79,13 +79,31 @@ addEventOnElem(filterBtns, "click", filter);
 let cart = [];
 const cartBadge = document.querySelector('.cart-add');
 const addToCartButtons = document.querySelectorAll('.card-action-btn[title="add to cart"]');
+const cartButton = document.getElementById('cartButton');
+const cartItems = document.getElementById('cartItems');
 
-const favBadge = document.querySelector('.fav-add');
-const addToFavButtons = document.querySelectorAll('.card-action-btn[title="aadd to whishlist"]');
-
-// Function to update the cart badge
 const updateCartBadge = function () {
   cartBadge.textContent = cart.length;
+}
+
+// Function to update the cart sidebar
+const updateCartSidebar = function () {
+  cartItems.innerHTML = '';
+  cart.forEach((product, index) => {
+    const [productName, productImage] = product.split('#');
+    const listItem = document.createElement('li');
+    
+    const image = document.createElement('img');
+    image.src = productImage;
+    image.width = 50; // Adjust size as needed
+    image.height = 50; // Adjust size as needed
+    listItem.appendChild(image);
+
+    const text = document.createTextNode(` ${productName}`);
+    listItem.appendChild(text);
+
+    cartItems.appendChild(listItem);
+  });
 }
 
 // Event listener for "add to cart" buttons
@@ -94,14 +112,35 @@ addToCartButtons.forEach(button => {
     // Find the closest product card
     const productCard = button.closest('.product-card');
     
-    // Get the product ID (you may need to modify this to match your product ID retrieval method)
-    const productId = productCard.querySelector('img').getAttribute('alt');
+    // Get the product name and image address
+    const productName = productCard.querySelector('img').getAttribute('alt');
+    const productImage = productCard.querySelector('img').getAttribute('src');
+    
+    // Combine product name and image address
+    const productInfo = `${productName}#${productImage}`;
 
-    // Add product ID to cart array
-    cart.push(productId);
+    // Add product info to cart array
+    cart.push(productInfo);
     console.log(cart);
 
-    // Update the cart badge
+    // Update the cart badge and sidebar
     updateCartBadge();
+    updateCartSidebar();
   });
+});
+
+// Function to save cart data to localStorage
+const saveCartToLocalStorage = function () {
+  localStorage.setItem('cart', JSON.stringify(cart));
+  console.log('Cart data saved to localStorage:', cart);
+}
+
+// Event listener for the cart button to navigate to the checkout page
+cartButton.addEventListener('click', function () {
+  if (cart.length > 0) {
+    saveCartToLocalStorage();
+    window.location.href = 'checkout.html';
+  }else{
+    alert('Please add some items to cart');
+  }
 });
