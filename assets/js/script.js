@@ -86,46 +86,22 @@ const updateCartBadge = function () {
   cartBadge.textContent = cart.length;
 }
 
-// Function to update the cart sidebar
-const updateCartSidebar = function () {
-  cartItems.innerHTML = '';
-  cart.forEach((product, index) => {
-    const [productName, productImage] = product.split('#');
-    const listItem = document.createElement('li');
-    
-    const image = document.createElement('img');
-    image.src = productImage;
-    image.width = 50; // Adjust size as needed
-    image.height = 50; // Adjust size as needed
-    listItem.appendChild(image);
-
-    const text = document.createTextNode(` ${productName}`);
-    listItem.appendChild(text);
-
-    cartItems.appendChild(listItem);
-  });
-}
 
 // Event listener for "add to cart" buttons
 addToCartButtons.forEach(button => {
   button.addEventListener('click', function () {
-    // Find the closest product card
     const productCard = button.closest('.product-card');
-    
-    // Get the product name and image address
+  
     const productName = productCard.querySelector('img').getAttribute('alt');
     const productImage = productCard.querySelector('img').getAttribute('src');
-    
-    // Combine product name and image address
-    const productInfo = `${productName}#${productImage}`;
+    const productPrice = productCard.querySelector('.price').textContent;
+  
+    const productInfo = `${productName}#${productImage}#${productPrice}`;
 
-    // Add product info to cart array
     cart.push(productInfo);
     console.log(cart);
 
-    // Update the cart badge and sidebar
     updateCartBadge();
-    updateCartSidebar();
   });
 });
 

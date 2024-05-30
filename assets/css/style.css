@@ -806,10 +806,6 @@ a.card-meta-text:is(:hover, :focus) { color: var(--tan-crayola); }
 
 @media (min-width: 575px) {
 
-  /**
-   * REUSED STYLE
-   */
-
   .container {
     max-width: 575px;
     width: 100%;
@@ -896,27 +892,16 @@ a.card-meta-text:is(:hover, :focus) { color: var(--tan-crayola); }
 
 @media (min-width: 768px) {
 
-  /**
-   * REUSED STYLE
-   */
-
   .container { max-width: 768px; }
 
 
 
-  /**
-   * HEADER
-   */
+  
 
   .header-action { gap: 35px; }
 
   .header .input-wrapper { width: 200px; }
 
-
-
-  /**
-   * HERO
-   */
 
   .hero-list {
     grid-template-columns: repeat(4, 1fr);
@@ -927,17 +912,8 @@ a.card-meta-text:is(:hover, :focus) { color: var(--tan-crayola); }
 
 
 
-  /**
-   * ABOUT
-   */
-
   .about .section-text { margin-block-end: 75px; }
 
-
-
-  /**
-   * PRODUCT
-   */
 
   .product .title-wrapper {
     display: flex;
@@ -949,10 +925,6 @@ a.card-meta-text:is(:hover, :focus) { color: var(--tan-crayola); }
   .filter-btn-list { margin: 0; }
 
 
-
-  /**
-   * NEWSLETTER
-   */
 
   .newsletter-card { padding: 50px 70px; }
 
@@ -967,11 +939,6 @@ a.card-meta-text:is(:hover, :focus) { color: var(--tan-crayola); }
  */
 
 @media (min-width: 992px) {
-
-  /**
-   * REUSED STYLE
-   */
-
   .container { max-width: 992px; }
 
   .grid-list > li:last-child { all: unset; }
@@ -980,28 +947,15 @@ a.card-meta-text:is(:hover, :focus) { color: var(--tan-crayola); }
 
 
 
-  /**
-   * HERO
-   */
-
   .hero-card .card-title { --fs-3: 2.2rem; }
 
 
-
-  /**
-   * ABOUT
-   */
 
   .about .section-text {
     max-width: 85ch;
     margin-inline: auto;
   }
 
-
-
-  /**
-   * NEWSLETTER
-   */
 
   .newsletter { --section-padding: 50px; }
 
@@ -1014,11 +968,6 @@ a.card-meta-text:is(:hover, :focus) { color: var(--tan-crayola); }
 
   .newsletter-card .card-content { margin-block-end: 0; }
 
-
-
-  /**
-   * FOOTER
-   */
 
   .footer-top {
     grid-template-columns: 1fr 0.75fr 0.6fr 1fr;
@@ -1037,33 +986,17 @@ a.card-meta-text:is(:hover, :focus) { color: var(--tan-crayola); }
 
 @media (min-width: 1200px) {
 
-  /**
-   * CUSTOM PROPERTY
-   */
+  
 
   :root {
 
-    /**
-     * typography
-     */
+    
 
     --fs-2: 3.6rem;
 
   }
 
-
-
-  /**
-   * REUSED STYLE
-   */
-
   .container { max-width: 1200px; }
-
-
-
-  /**
-   * PRODUCT
-   */
 
   .product-list { grid-template-columns: repeat(4, 1fr); }
 
